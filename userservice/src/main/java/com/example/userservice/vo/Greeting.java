@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
 //@AllArgsConstructor
 //@NoArgsConstructor
 public class Greeting {
-    @Value("${greeting.message")
+    @Value("${greeting.message}")
     private String message;
 }
