@@ -37,4 +37,14 @@ public class UserServiceImpl implements UserService {
 
         return returnUserDto;
     }
+
+    @Override
+    public UserDto getUserByUserId(String userId) {
+        return null;
+    }
+
+    @Override
+    public Iterable<UserEntity> getUserByAll() {
+        return userRepository.findAll();
+    }
 }
