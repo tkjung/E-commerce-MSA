@@ -70,11 +70,9 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId) {
-        UserDto userDto = userService.getUserByUserId(userId);
-
+    public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId) {  // 위는 유저 리스트, 이건 개별 유저 조회
+        UserDto userDto = userService.getUserByUserId(userId);  // 개별 유저니까 List 필요없다.
         ResponseUser returnValue = new ModelMapper().map(userDto, ResponseUser.class);
-
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
     }
 }
