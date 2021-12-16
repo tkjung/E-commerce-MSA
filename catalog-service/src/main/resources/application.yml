@@ -4,10 +4,9 @@ server:
 spring:
   application:
     name: catalog-service
-
   h2:
     console:
-      enable: true
+      enabled: true
       settings:
         web-allow-others: true
       path: /h2-console
