@@ -19,6 +19,11 @@ spring:
           predicates:
             - Path=/user-service/**  # /user-service/로 오는 모든 식은 uri: USER-SERVICE로 포워딩
 
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+
         - id: first-service
           uri: lb://MY-FIRST-SERVICE
           predicates:
@@ -26,11 +31,3 @@ spring:
           filters:
             - AddRequestHeader=first-request, first-request-header2
             - AddResponseHeader=first-response, first-response-header2
-
-        - id: second-service
-          uri: lb://MY-SECOND-SERVICE
-          predicates:
-            - Path=/second-service/**
-          filters:
-            - AddRequestHeader=second-request, second-request-header2
-            - AddResponseHeader=second-response, second-response-header2
