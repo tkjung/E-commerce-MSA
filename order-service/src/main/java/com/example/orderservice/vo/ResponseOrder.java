@@ -2,6 +2,7 @@ package com.example.orderservice.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import lombok.bytecode.*;
 
 import java.util.Date;
 
