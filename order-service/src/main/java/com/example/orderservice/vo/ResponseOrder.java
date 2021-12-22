@@ -2,7 +2,7 @@ package com.example.orderservice.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-
+import java.util.List;
 import java.util.Date;
 
 @Data
