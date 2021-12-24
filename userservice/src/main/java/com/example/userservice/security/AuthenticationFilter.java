@@ -14,4 +14,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     // Success 구현
+    public int attempt() {
+        return 1;
+    }
 }
