@@ -23,8 +23,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         try { // POST 메소드로 전달된 데이터는 Request 파라메터로 못 받으므로, InputStream 으로 받고 RequestLogin 으로 변환
             RequestLogin creds = new ObjectMapper().readValue(request.getInputStream(), RequestLogin.class);
 
-            // 이메일, 패스워드를 Spring Security 에서 쓸 수 있는
-            new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword(), new ArrayList<>());
+            // 이메일, 패스워드를 Spring Security 에서 쓸 수 있는 토큰으로 변환해서, 인증 처리 매니저에 넘김.
+            return getAuthenticationManager().authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            creds.getEmail(), creds.getPassword(), new ArrayList<>()
+                    )
+            );
+
+
         } catch(IOException e) { // IO 스트림 오류를 잡아주는 경우에 대해 명시해야 getInputStream() 오류가 안 뜬다.
             throw new RuntimeException(e);
         }
@@ -34,6 +40,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-        super.successfulAuthentication(request, response, chain, authResult);
+
     }
 }
