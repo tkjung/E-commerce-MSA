@@ -24,7 +24,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         } catch(IOException e) { // IO 스트림 오류를 잡아주는 경우에 대해 명시해야 getInputStream() 오류가 안 뜬다.
             throw new RuntimeException(e);
         }
-    }
+    } // 이 줄 오류 해결할 것, success 아래 메소드 끝내기
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
