@@ -29,8 +29,10 @@ public class UserServiceImpl implements UserService {
 
         if(userEntity == null) // Email 로 검색해도 해당 유저가 없다면
             throw new UsernameNotFoundException(username);
-        // User
-        return new User(userEntity.getEmail(), userEntity.getEncryptedPwd());
+        // 검색이 완료된 후에 결과 돌려줌. User 는 Spring Security 포함된 클래스.
+        return new User(userEntity.getEmail(), userEntity.getEncryptedPwd(),
+                true, true, true, true
+                new ArrayList<>());  // ----------------- 여기부터 내일 시작
     }
 
     @Autowired
