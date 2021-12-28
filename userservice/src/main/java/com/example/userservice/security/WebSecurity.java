@@ -27,7 +27,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception { // 권한 관련 config
+    protected void configure(HttpSecurity http) throws Exception { // 권한 부여 관련 config
         http.csrf().disable();
         // http.authorizeRequests().antMatchers("/users/**").permitAll();
         http.authorizeRequests().antMatchers("/**") // 모든 코드에 대해서 통과시키지 않음.

@@ -31,14 +31,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                             new ArrayList<>()
                     )
             );
-
         } catch(IOException e) { // IO 스트림 오류를 잡아주는 경우에 대해 명시해야 getInputStream() 오류가 안 뜬다.
             throw new RuntimeException(e);
         }
     }
 
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+    @Override // 로그인 성공했을 때 어떤 처리를 할 것인지.
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
 
