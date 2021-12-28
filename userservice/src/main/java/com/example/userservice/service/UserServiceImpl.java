@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     BCryptPasswordEncoder passwordEncoder;
 
-    @Override
+    @Override // email 로 해당 사용자를 찾아주는 메소드  
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // DB에서 Repository 값을 가져와서 검사
         UserEntity userEntity = userRepository.findByEmail(username);
@@ -76,6 +76,4 @@ public class UserServiceImpl implements UserService {
     public Iterable<UserEntity> getUserByAll() {
         return userRepository.findAll();
     }
-
-
 }
