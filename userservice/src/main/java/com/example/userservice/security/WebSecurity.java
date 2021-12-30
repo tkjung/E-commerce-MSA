@@ -27,28 +27,27 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception { // 권한 부여 관련 config
+    protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        // http.authorizeRequests().antMatchers("/users/**").permitAll();
-        http.authorizeRequests().antMatchers("/**") // 모든 코드에 대해서 통과시키지 않음.
-                        .hasIpAddress("192.168.120.1") // IP 제한
-                        .and()
-                        .addFilter(getAuthenticationFilter()); // 이 필터를 거친 데이터에 한해서만 권한부여/작업진행.
+        http.authorizeRequests().antMatchers("/**")
+                .hasIpAddress("128.134.187.109") // IP 수정
+                .and()
+                .addFilter(getAuthenticationFilter());
 
         http.headers().frameOptions().disable();
     }
 
-    private AuthenticationFilter getAuthenticationFilter() throws Exception{    // 인증 처리
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter(); // 인증처리하는 객체 생성
-        authenticationFilter.setAuthenticationManager(authenticationManager()); // Spring Security에서 가져온 매니저
+    private AuthenticationFilter getAuthenticationFilter() throws Exception {
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+        authenticationFilter.setAuthenticationManager(authenticationManager());
 
         return authenticationFilter;
     }
 
-    // SELECT pwd FROM users WHERE email = ? -> 사용자 검색기능 = UserService 에서 받음.
-    // DB에 있는 pwd(encrypted) == input_pwd(encrypted) 비교
+    // SELECT pwd FROM users WHERE email=?
+    // db_pwd(encrypted) == input_pwd(encrypted)
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception { // 인증 관련 config
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);  // pwd 변환 작업, UserServiceApplication 에 있는 @Bean을 여기서 사용.
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
     }
 }

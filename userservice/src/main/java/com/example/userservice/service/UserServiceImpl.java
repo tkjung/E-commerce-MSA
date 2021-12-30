@@ -22,17 +22,16 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     BCryptPasswordEncoder passwordEncoder;
 
-    @Override // email 로 해당 사용자를 찾아주는 메소드
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // DB에서 Repository 값을 가져와서 검사
         UserEntity userEntity = userRepository.findByEmail(username);
 
-        if(userEntity == null) // Email 로 검색해도 해당 유저가 없다면
+        if(userEntity == null)
             throw new UsernameNotFoundException(username);
-        // 검색이 완료된 후에 결과 돌려줌. User 는 Spring Security 포함된 클래스.
+
         return new User(userEntity.getEmail(), userEntity.getEncryptedPwd(),
                 true, true, true, true,
-                new ArrayList<>());  // 로그인 후 권한 추가작업 예정
+                new ArrayList<>());
     }
 
     @Autowired

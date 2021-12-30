@@ -14,10 +14,19 @@ spring:
   cloud:
     gateway:
       routes:
+#        - id: user-service
+#          uri: lb://USER-SERVICE  # lb란 로드밸런서
+#          predicates:
+#            - Path=/user-service/**  # /user-service/로 오는 모든 식은 uri: USER-SERVICE로 포워딩
+
         - id: user-service
-          uri: lb://USER-SERVICE  # lb란 로드밸런서
+          uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/**  # /user-service/로 오는 모든 식은 uri: USER-SERVICE로 포워딩
+            - Path=/user-service/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment} # 여기 밑으로 더 구성
 
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
