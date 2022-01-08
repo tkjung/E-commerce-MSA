@@ -18,7 +18,7 @@ import javax.servlet.Filter;
 public class WebSecurity extends WebSecurityConfigurerAdapter {
     private UserService userService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private Environment env;
+    private Environment env;;
 
     public WebSecurity(Environment env, UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.env = env;
