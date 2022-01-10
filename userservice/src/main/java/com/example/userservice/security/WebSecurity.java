@@ -12,7 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.Filter;
-import javax.servlet.Filter;
 
 @Configuration
 @EnableWebSecurity
