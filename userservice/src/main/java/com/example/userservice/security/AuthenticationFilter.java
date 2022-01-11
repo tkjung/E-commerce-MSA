@@ -42,6 +42,5 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         log.debug(((User)authResult.getPrincipal()).getUsername());
-        // 더 구현.
     }
 }
