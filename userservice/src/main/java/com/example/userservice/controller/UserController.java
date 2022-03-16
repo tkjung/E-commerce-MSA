@@ -69,5 +69,4 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(result); // 리턴은 body 부분에 result 를 담아 반환.
     }
 
-
 }
