@@ -38,7 +38,11 @@ public class UserController {
                 env.getProperty("local.server.port"));
     }
 
-
+    @GetMapping("/welcome")
+    public String welcome() {
+        // return env.getProperty("greeting.message");
+        return greeting.getMessage();
+    }
 
     @PostMapping("/users")
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) { // ResponseEntity: 개발자가 직접 결과데이터와 HTTP상태코드 제어
