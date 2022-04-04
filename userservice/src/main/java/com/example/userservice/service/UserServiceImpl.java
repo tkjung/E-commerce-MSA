@@ -56,6 +56,20 @@ public class UserServiceImpl implements UserService {
         return returnUserDto;
     }
 
+    @Override
+    public UserDto getUserByUserId(String userId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+
+        if(userEntity == null)
+            throw new UsernameNotFoundException("User not found");
+
+        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+
+        List<ResponseOrder> orders = new ArrayList<>();
+        userDto.setOrders(orders); // Lombok에 의해 생성된 메소드
+
+        return userDto;
+    }
 
     @Override
     public Iterable<UserEntity> getUserByAll() {
