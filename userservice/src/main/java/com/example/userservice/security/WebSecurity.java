@@ -37,12 +37,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
     }
 
-    private AuthenticationFilter getAuthenticationFilter() throws Exception {
-        AuthenticationFilter authenticationFilter = new AuthenticationFilter();
-        authenticationFilter.setAuthenticationManager(authenticationManager());
 
-        return authenticationFilter;
-    }
 
     // SELECT pwd FROM users WHERE email=?
     // db_pwd(encrypted) == input_pwd(encrypted)
