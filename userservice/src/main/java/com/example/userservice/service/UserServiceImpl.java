@@ -34,7 +34,11 @@ public class UserServiceImpl implements UserService {
                 new ArrayList<>());
     }
 
-  
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public UserDto createUser(UserDto userDto) {
