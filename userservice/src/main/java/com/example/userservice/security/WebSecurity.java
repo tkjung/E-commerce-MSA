@@ -44,5 +44,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         return authenticationFilter;
     }
 
- 
+    // SELECT pwd FROM users WHERE email=?it
+    // db_pwd(encrypted) == input_pwd(encrypted)
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+    }
 }
