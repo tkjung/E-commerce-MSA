@@ -18,19 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController // REST 방식의 데이터 처리하기 위해 사용. REST 란, 1URI = 1리소스를 대표
-@RequestMapping("/")
-public class UserController {
-    private Environment env;
-    private UserService userService;
 
-    @Autowired
-    private Greeting greeting;
-
-    @Autowired
-    public UserController(Environment env, UserService userService) {
-        this.env = env;
-        this.userService = userService;
-    }
 
     @GetMapping("/health_check")
     public String status() {
