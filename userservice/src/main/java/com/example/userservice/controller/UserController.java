@@ -32,19 +32,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/")
-    public class UserController {
-        private Environment env;
-        private UserService userService;
 
-        @Autowired
-        private Greeting greeting;
-
-        @Autowired
-        public UserController(Environment env, UserService userService) {
-            this.env = env;
-            this.userService = userService;
-        }
 
     @GetMapping("/welcome")
     public String welcome() {
