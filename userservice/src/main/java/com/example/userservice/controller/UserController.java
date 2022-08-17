@@ -65,7 +65,17 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<List<ResponseUser>> getUsers() {
+        Iterable<UserEntity> userList = userService.getUserByAll(); // 모든 유저 가져옴. UserEntity 형식 여러 개는 userList 가 된다.
 
+        List<ResponseUser> result = new ArrayList<>(); // 새 배열 result 의 자료형은 ResponseUser 인데
+        userList.forEach(v ->{                         // userList 의 하나하나 userEntity 에 대하여
+            result.add(new ModelMapper().map(v,ResponseUser.class)); // result 에다 추가해준다. 추가할 땐 ResponseUser 로 변환하고 추가.
+        });
+
+        return ResponseEntity.status(HttpStatus.OK).body(result); // 리턴은 body 부분에 result 를 담아 반환.
+    }
 
 
 }
